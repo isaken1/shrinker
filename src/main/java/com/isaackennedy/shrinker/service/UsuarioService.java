@@ -4,26 +4,22 @@ import com.isaackennedy.shrinker.domain.Usuario;
 import com.isaackennedy.shrinker.repository.UsuarioRepository;
 import com.isaackennedy.shrinker.service.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class UsuarioService {
+public class UsuarioService extends GenericService<Usuario> {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    public Usuario find(Long id) {
-        Optional<Usuario> user = usuarioRepository.findById(id);
-
-        return user.orElseThrow(() ->
-                new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", tipo: " + Usuario.class.getName()));
+    public UsuarioService(JpaRepository<Usuario, Long> repository) {
+        super(repository);
     }
 
-    public Usuario insert(Usuario obj) {
-        obj.setId(null);
-        return usuarioRepository.save(obj);
+    @Override
+    void updateData(Usuario newObj, Usuario oldObj) {
+        //TODO: Implementar método!
     }
 
 }

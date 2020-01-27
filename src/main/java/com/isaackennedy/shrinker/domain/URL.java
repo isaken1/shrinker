@@ -12,15 +12,20 @@ public class URL extends GenericDomainUnit implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Column
+    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date dataCriacao;
 
     @ManyToOne
-    @JoinColumn(name="usuario_id")
+    @JoinColumn(name="id")
     @JsonIgnore
     private Usuario usuario;
 
+    @Column
     private String urlOriginal;
+
+    @Column
     private String urlEncurtada;
 
     public URL() {}

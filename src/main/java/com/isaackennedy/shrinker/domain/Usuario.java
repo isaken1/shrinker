@@ -10,10 +10,13 @@ public class Usuario extends GenericDomainUnit implements Serializable {
     @Column(unique = true)
     private String email;
 
+    @Column
     private String nome;
+
+    @Column
     private String senha;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
     private List<URL> urlsEncurtadas;
 
     public Usuario() {}

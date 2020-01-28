@@ -18,8 +18,8 @@ public class UsuarioService extends GenericService<Usuario> {
     }
 
     @Override
-    void updateData(Usuario newObj, Usuario oldObj) {
-        //TODO: Implementar método!
+    void updateData(Usuario newObj, Usuario obj) {
+        newObj.setSenha(obj.getSenha());
     }
 
 }

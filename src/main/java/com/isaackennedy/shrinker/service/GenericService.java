@@ -46,5 +46,5 @@ public abstract class GenericService<T extends GenericDomainUnit> {
         repo.deleteById(id);
     }
 
-    abstract void updateData(T newObj, T oldObj);
+    abstract void updateData(T newObj, T obj);
 }

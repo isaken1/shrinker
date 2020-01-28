@@ -1,8 +1,13 @@
 package com.isaackennedy.shrinker.domain;
 
+import com.isaackennedy.shrinker.domain.enums.PerfisUsuario;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class Usuario extends GenericDomainUnit implements Serializable {
@@ -24,13 +29,19 @@ public class Usuario extends GenericDomainUnit implements Serializable {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
     private List<URL> urlsEncurtadas;
 
-    public Usuario() {}
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name="PERFIS")
+    private Set<Integer> perfis = new HashSet<>();
+
+    public Usuario() { addPerfil(PerfisUsuario.USER); }
 
     public Usuario(Long id, String email, String nome, String senha) {
+        super();
         this.id = id;
         this.email = email;
         this.nome = nome;
         this.senha = senha;
+        addPerfil(PerfisUsuario.USER);
     }
 
     @Override
@@ -72,5 +83,13 @@ public class Usuario extends GenericDomainUnit implements Serializable {
 
     public void setUrlsEncurtadas(List<URL> urlsEncurtadas) {
         this.urlsEncurtadas = urlsEncurtadas;
+    }
+
+    public Set<PerfisUsuario> getPerfis() {
+        return perfis.stream().map(PerfisUsuario::toEnum).collect(Collectors.toSet());
+    }
+
+    public void addPerfil(PerfisUsuario perfil) {
+        perfis.add(perfil.getCod());
     }
 }

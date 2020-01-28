@@ -23,7 +23,7 @@ public class URL extends GenericDomainUnit implements Serializable {
     private Date dataCriacao;
 
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="id_usuario")
     @JsonIgnore
     private Usuario usuario;
 

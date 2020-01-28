@@ -12,6 +12,11 @@ public class URL extends GenericDomainUnit implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @Column(name = "id_url")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
@@ -31,11 +36,20 @@ public class URL extends GenericDomainUnit implements Serializable {
     public URL() {}
 
     public URL(Long id, Date dataCriacao, Usuario usuario, String urlOriginal, String urlEncurtada) {
-        super(id);
+        this.id = id;
         this.dataCriacao = dataCriacao;
         this.usuario = usuario;
         this.urlOriginal = urlOriginal;
         this.urlEncurtada = urlEncurtada;
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Date getDataCriacao() {

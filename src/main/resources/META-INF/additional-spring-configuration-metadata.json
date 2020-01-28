@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "jwt.expiration",
+      "type": "java.lang.String",
+      "description": "Tempo para expiração do token JWT (em ms)."
+    },
+    {
+      "name": "jwt.secret",
+      "type": "java.lang.String",
+      "description": "Sequência de caracteres que será usada para gerar o token JWT."
+    }
+  ] }

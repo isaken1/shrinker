@@ -7,6 +7,11 @@ import java.util.List;
 @Entity
 public class Usuario extends GenericDomainUnit implements Serializable {
 
+    @Id
+    @Column(name = "id_usuario")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(unique = true)
     private String email;
 
@@ -22,10 +27,19 @@ public class Usuario extends GenericDomainUnit implements Serializable {
     public Usuario() {}
 
     public Usuario(Long id, String email, String nome, String senha) {
-        super(id);
+        this.id = id;
         this.email = email;
         this.nome = nome;
         this.senha = senha;
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEmail() {

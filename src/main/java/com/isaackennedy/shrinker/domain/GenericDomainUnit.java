@@ -1,36 +1,23 @@
 package com.isaackennedy.shrinker.domain;
 
+import org.springframework.data.domain.Persistable;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @MappedSuperclass
-public abstract class GenericDomainUnit implements Serializable {
+public abstract class GenericDomainUnit implements Serializable, Persistable<Long> {
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", updatable = false, nullable = false)
-    protected Long id;
-
-    public GenericDomainUnit() {}
-
-    public GenericDomainUnit(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public boolean isNew() {
+        return getId() == null;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         return result;
     }
 
@@ -43,8 +30,8 @@ public abstract class GenericDomainUnit implements Serializable {
         if (getClass() != obj.getClass())
             return false;
         GenericDomainUnit other = (GenericDomainUnit) obj;
-        if (id == null) {
-            return other.id == null;
-        } else return id.equals(other.id);
+        if (getId() == null) {
+            return other.getId() == null;
+        } else return getId().equals(other.getId());
     }
 }

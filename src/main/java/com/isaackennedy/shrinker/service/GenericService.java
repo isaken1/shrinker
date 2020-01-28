@@ -25,7 +25,6 @@ public abstract class GenericService<T extends GenericDomainUnit> {
     }
 
     public T insert(T obj) {
-        obj.setId(null);
         return repo.save(obj);
     }
 

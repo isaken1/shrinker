@@ -1,32 +1,40 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <b-container fluid class="vertical-center">
+    <b-col offset-sm="3" cols="6">
+      <b-jumbotron>
+        <b-col sm="6" offset-sm="3">
+          <div v-if="alert.message" :class="`alert ${alert.type}`">
+            {{ alert.message }}
+          </div>
+          <router-view />
+        </b-col>
+      </b-jumbotron>
+    </b-col>
+  </b-container>
 </template>
 
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+export default {
+  name: "app",
+  computed: {
+    alert() {
+      return this.$store.state.alert;
+    }
+  },
+  watch: {
+    $route() {
+      this.$store.dispatch("alert/clear");
+    }
+  }
+};
+</script>
 
-#nav {
-  padding: 30px;
-}
+<style scoped>
+.vertical-center {
+  min-height: 100%;
+  min-height: 100vh;
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+  display: flex;
+  align-items: center;
 }
 </style>

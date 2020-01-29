@@ -1,8 +1,8 @@
 package shrinker.resource.exception;
 
-import .shrinker.service.exception.AuthorizationException;
-import .shrinker.service.exception.DataIntegrityException;
-import .shrinker.service.exception.ObjectNotFoundException;
+import shrinker.service.exception.AuthorizationException;
+import shrinker.service.exception.DataIntegrityException;
+import shrinker.service.exception.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

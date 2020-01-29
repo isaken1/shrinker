@@ -8,9 +8,9 @@ O _Shrinker_ é um simples sistema de geração de URLs encurtadas com autentica
 
 A aplicação se divide em duas partes: 
 * O back-end feito em Java/Spring que fornece as APIs para gerenciamento dos dados e serviços de armazenamento
-e autenticação.
+e autenticação, encontrado no módulo **shrinker-back**.
 * O front-end escrito em Javascript utilizando o Vue.js para explicitar uma interface para interação do
-usuário com o sistema.
+usuário com o sistema, encontrado no módulo **shrinker-front**.
 
 Dito isso, para rodar o sistema localmente, primeiramente é necessário que sejam resolvidas as dependências.
 Para isso, foi escolhido o Maven como gerenciador de dependências no módulo de back-end, e para o front é

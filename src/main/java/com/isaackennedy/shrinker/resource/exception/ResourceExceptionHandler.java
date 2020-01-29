@@ -1,8 +1,8 @@
 package com.isaackennedy.shrinker.resource.exception;
 
-import com.isaackennedy.curso.services.exceptions.AuthorizationException;
-import com.isaackennedy.curso.services.exceptions.DataIntegrityException;
-import com.isaackennedy.curso.services.exceptions.ObjectNotFoundException;
+import com.isaackennedy.shrinker.service.exception.AuthorizationException;
+import com.isaackennedy.shrinker.service.exception.DataIntegrityException;
+import com.isaackennedy.shrinker.service.exception.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

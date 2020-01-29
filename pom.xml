@@ -12,7 +12,7 @@
 	<artifactId>shrinker</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>shrinker</name>
-	<description>Encurtador de URLs</description>
+	<description>Sistema ncurtador de URLs</description>
 
 	<properties>
 		<java.version>11</java.version>

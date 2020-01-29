@@ -22,7 +22,7 @@ public class URLResource {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<UrlDTO>> findAll() {
-        List<URL> list = urlService.findAll();
+        List<URL> list = urlService.findAllFromUser();
         List<UrlDTO> listDTO = list.stream().map(UrlDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDTO);
     }

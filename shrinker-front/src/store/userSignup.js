@@ -4,9 +4,8 @@ import { router } from "@/router";
 export const userSignup = {
   namespaced: true,
   state: {
-    nome: null,
-    senha: null,
-    email: null
+    status: {},
+    user: null
   },
   actions: {
     signUp({ dispatch, commit }, { nome, senha, email }) {
@@ -15,7 +14,7 @@ export const userSignup = {
       userService.newUser(email, senha, nome).then(
         user => {
           commit("signUpSuccess", user);
-          dispatch("authentication/login", { email, senha });
+          router.replace("/");
         },
         error => {
           commit("signUpFail", error);

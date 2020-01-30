@@ -1,3 +1,11 @@
+export const userService = {
+  login,
+  logout,
+  newUser,
+  handleResponse
+};
+
+
 function logout() {
   localStorage.removeItem("user");
 }
@@ -12,7 +20,14 @@ function login(email, senha) {
     body: JSON.stringify({ email, senha })
   };
 
-  return fetch("http://localhost:8080/login", options).then(handleResponse);
+  return fetch("http://localhost:8080/login", options)
+    .then(handleResponse)
+    .then(user => {
+      if (user.token) {
+        localStorage.setItem("user", JSON.stringify(user));
+      }
+      return user;
+    });
 }
 
 function newUser(email, senha, nome) {
@@ -43,9 +58,3 @@ function handleResponse(response) {
     return data;
   });
 }
-
-export const userService = {
-  login,
-  logout,
-  newUser
-};

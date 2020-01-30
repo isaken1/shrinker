@@ -6,13 +6,18 @@ Vue.use(Router);
 const LoginPage = () => import("@/components/LoginPage");
 const HomePage = () => import("@/components/HomePage");
 const NewUserPage = () => import("@/components/NewUserPage");
+const URLList = () => import("@/components/URLList");
 
 export const router = new Router({
   mode: "history",
   routes: [
-    { path: "/", component: HomePage },
+    {
+      path: "/",
+      component: HomePage,
+      children: [{ path: "", component: URLList }]
+    },
     { path: "/login", component: LoginPage },
-    { path: "/cadastrar", component: NewUserPage, name: "cadastro" },
+    { path: "/cadastrar", component: NewUserPage },
     { path: "*", redirect: "/" }
   ]
 });

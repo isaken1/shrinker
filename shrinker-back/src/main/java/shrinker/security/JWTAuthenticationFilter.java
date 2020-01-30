@@ -1,6 +1,7 @@
 package shrinker.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import shrinker.domain.Usuario;
 import shrinker.dto.CredenciaisDTO;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -8,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import shrinker.repository.UsuarioRepository;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -21,11 +23,14 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private AuthenticationManager authenticationManager;
     private JWTUtil util;
+    private UsuarioRepository repository;
 
-    public JWTAuthenticationFilter(AuthenticationManager authenticationManager, JWTUtil util) {
+    public JWTAuthenticationFilter(AuthenticationManager authenticationManager, JWTUtil util,
+                                   UsuarioRepository repository) {
         setAuthenticationFailureHandler(new JWTAuthenticationFailureHandler());
         this.authenticationManager = authenticationManager;
         this.util = util;
+        this.repository = repository;
     }
 
     @Override
@@ -48,9 +53,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             HttpServletResponse response,
                                             FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
-        String username = ((AuthUser) authResult.getPrincipal()).getUsername();
-        String token = util.generateToken(username);
+        String email = ((AuthUser) authResult.getPrincipal()).getUsername();
+        String username = repository.findByEmail(email).getNome();
+        String token = util.generateToken(email);
         response.addHeader("Authorization", "Bearer " + token);
+        response.getWriter().write("{\"token\": \"Bearer " + token + "\", \"nome\": \""+ username +"\"}" );
     }
 
     private static class JWTAuthenticationFailureHandler implements AuthenticationFailureHandler {

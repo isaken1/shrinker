@@ -23,7 +23,6 @@ public class UsuarioService extends GenericService<Usuario> {
         return super.insert(obj);
     }
 
-
     @Override
     void updateData(Usuario newObj, Usuario obj) {
         newObj.setSenha(obj.getSenha());

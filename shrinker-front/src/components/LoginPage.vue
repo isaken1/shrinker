@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Login</h2>
+    <h2 style="text-align: center">Login</h2>
     <b-form @submit.prevent="handleSubmit">
       <b-form-group label="E-mail:" label-for="input-email">
         <b-form-input
@@ -11,18 +11,18 @@
           :invalid-feedback="invalidFeedbackEmail"
         />
       </b-form-group>
-      <b-form-group label="Senha:" label-for="input-password">
+      <b-form-group label="Senha:" label-for="input-senha">
         <b-form-input
-          id="input-password"
+          id="input-senha"
           type="password"
           v-model="senha"
-          name="password"
+          name="senha"
           :invalid-feedback="invalidFeedbackPassword"
           :class="{ 'is-invalid': formPasswordState }"
         />
       </b-form-group>
       <b-form-group>
-        <b-button :disabled="loggingIn" type="submit" variant="primary"
+        <b-button block :disabled="loggingIn" type="submit" variant="primary"
           >Entrar</b-button
         >
         <img
@@ -31,12 +31,16 @@
         />
       </b-form-group>
     </b-form>
-    <b-container>
-      <b-button-group>
-        <b-button variant="link" style="text-decoration: none"
+    <b-container class="form-buttons">
+      <b-button-group :disabled="loggingIn">
+        <b-button to="/cadastrar" variant="link" style="text-decoration: none"
           >Cadastrar</b-button
         >
-        <b-button to="cadastro" variant="link" style="text-decoration: none"
+        <b-button
+          disabled
+          to="cadastro"
+          variant="link"
+          style="text-decoration: none"
           >Esqueci minha senha</b-button
         >
       </b-button-group>
@@ -56,7 +60,7 @@ export default {
   },
   computed: {
     formPasswordState() {
-      return this.submitted && !this.password;
+      return this.submitted && !this.senha;
     },
     formEmailState() {
       return this.submitted && !this.email;
@@ -91,3 +95,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.form-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+</style>

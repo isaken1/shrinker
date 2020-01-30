@@ -2,6 +2,7 @@ package shrinker.service;
 
 import shrinker.domain.URL;
 import shrinker.domain.Usuario;
+import shrinker.dto.NewUrlDTO;
 import shrinker.dto.UrlDTO;
 import shrinker.repository.URLRepository;
 import shrinker.security.AuthUser;
@@ -12,12 +13,17 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class URLService extends GenericService<URL> {
+
+    private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
     private final Base64 encoder = new Base64(true);
 
@@ -61,8 +67,14 @@ public class URLService extends GenericService<URL> {
         return "shrn.kd/" + encoder.encodeAsString(urlOriginal.getBytes(StandardCharsets.UTF_8));
     }
 
+    public URL fromDTO(NewUrlDTO objDTO) {
+        return new URL(null, new Date(),
+                usuarioService.find(AuthService.authenticated().getId()), objDTO.getUrlOriginal(),
+                shrinkUrl(objDTO.getUrlOriginal()));
+    }
+
     public URL fromDTO(UrlDTO objDTO) {
-        return new URL(null, new Date(System.currentTimeMillis()),
+        return new URL(null , objDTO.getDtCriacao(),
                 usuarioService.find(AuthService.authenticated().getId()), objDTO.getUrlOriginal(),
                 objDTO.getUrlEncurtada());
     }

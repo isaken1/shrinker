@@ -15,7 +15,7 @@
         <b-form-input
           id="input-password"
           type="password"
-          v-model="password"
+          v-model="senha"
           name="password"
           :invalid-feedback="invalidFeedbackPassword"
           :class="{ 'is-invalid': formPasswordState }"
@@ -36,7 +36,7 @@
         <b-button variant="link" style="text-decoration: none"
           >Cadastrar</b-button
         >
-        <b-button variant="link" style="text-decoration: none"
+        <b-button to="cadastro" variant="link" style="text-decoration: none"
           >Esqueci minha senha</b-button
         >
       </b-button-group>
@@ -50,7 +50,7 @@ export default {
   data() {
     return {
       email: "",
-      password: "",
+      senha: "",
       submitted: false
     };
   },
@@ -82,10 +82,10 @@ export default {
   methods: {
     handleSubmit() {
       this.submitted = true;
-      const { email, password } = this;
+      const { email, senha } = this;
       const { dispatch } = this.$store;
-      if (email && password) {
-        dispatch("authentication/login", { email, password });
+      if (email && senha) {
+        dispatch("authentication/login", { email, senha });
       }
     }
   }

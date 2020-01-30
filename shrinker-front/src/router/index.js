@@ -12,7 +12,7 @@ export const router = new Router({
   routes: [
     { path: "/", component: HomePage },
     { path: "/login", component: LoginPage },
-    { path: "/cadastrar", component: NewUserPage },
+    { path: "/cadastrar", component: NewUserPage, name: "cadastro" },
     { path: "*", redirect: "/" }
   ]
 });

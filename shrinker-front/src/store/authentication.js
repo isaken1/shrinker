@@ -10,10 +10,10 @@ export const authentication = {
   namespaced: true,
   state: initialState,
   actions: {
-    login({ dispatch, commit }, { email, password }) {
+    login({ dispatch, commit }, { email, senha }) {
       commit("loginRequest", { email });
 
-      userService.login(email, password).then(
+      userService.login(email, senha).then(
         user => {
           commit("loginSuccess", user);
           router.push("/");

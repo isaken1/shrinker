@@ -1,8 +1,8 @@
 <template>
   <b-container fluid class="vertical-center">
-    <b-col offset-sm="2" cols="8">
+    <b-col sm="12">
       <b-jumbotron>
-        <b-col sm="6" offset-sm="3">
+        <b-col sm="10" offset-sm="1">
           <div v-if="alert.message" :class="`alert ${alert.type}`">
             {{ alert.message }}
           </div>

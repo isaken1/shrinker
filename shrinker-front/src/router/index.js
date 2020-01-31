@@ -7,6 +7,7 @@ const LoginPage = () => import("@/components/LoginPage");
 const HomePage = () => import("@/components/HomePage");
 const NewUserPage = () => import("@/components/NewUserPage");
 const URLList = () => import("@/components/URLList");
+const NewUrl = () => import("@/components/NewUrl");
 
 export const router = new Router({
   mode: "history",
@@ -14,7 +15,10 @@ export const router = new Router({
     {
       path: "/",
       component: HomePage,
-      children: [{ path: "", component: URLList }]
+      children: [
+        { path: "", component: URLList },
+        { path: "/nova", component: NewUrl }
+      ]
     },
     { path: "/login", component: LoginPage },
     { path: "/cadastrar", component: NewUserPage },

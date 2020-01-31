@@ -45,8 +45,18 @@ public class URLService extends GenericService<URL> {
 
     @Override
     public URL insert(URL obj) {
-        Optional<URL> url = urlRepository.findByUrlOriginal(obj.getUrlOriginal());
+        AuthUser user = AuthService.authenticated();
+        if (user == null) {
+            throw new AuthorizationException("Acesso negado");
+        }
+
+        Usuario usuario = usuarioService.find(user.getId());
+
+        Optional<URL> url = urlRepository.findByUrlOriginalAndUsuario(obj.getUrlOriginal(), usuario);
         if (url.isPresent()) {
+            if (url.get().getUrlOriginal().equals(obj.getUrlOriginal())) {
+
+            }
             return update(obj);
         } else {
             return urlRepository.save(obj);

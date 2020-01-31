@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface URLRepository extends JpaRepository<URL, Long> {
 
     @Transactional(readOnly = true)
-    Optional<URL> findByUrlOriginal(String urlOriginal);
+    Optional<URL> findByUrlOriginalAndUsuario(String urlOriginal, Usuario usuario);
 
     @Transactional(readOnly = true)
     List<URL> findByUsuario(Usuario usuario);

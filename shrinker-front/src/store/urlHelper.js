@@ -1,4 +1,5 @@
 import { urlService } from "@/helper/url_service";
+import { router } from "@/router";
 
 const initialState = { status: {}, data: [], latest: {} };
 
@@ -22,6 +23,7 @@ export const urlHelper = {
       urlService.insert(url).then(
         response => {
           commit("insertNewUrlSuccess", response);
+          router.push("/");
         },
         error => {
           commit("insertNewUrlFailure", error);

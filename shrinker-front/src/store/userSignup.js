@@ -14,7 +14,7 @@ export const userSignup = {
       userService.newUser(email, senha, nome).then(
         user => {
           commit("signUpSuccess", user);
-          router.replace("/");
+          router.replace("/login");
         },
         error => {
           commit("signUpFail", error);

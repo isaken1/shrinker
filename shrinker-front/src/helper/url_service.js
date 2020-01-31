@@ -1,5 +1,5 @@
 import { authHeader } from "@/helper/http_header";
-import { userService } from "@/helper/user_service"
+import { userService } from "@/helper/user_service";
 
 export const urlService = {
   fetchAll,
@@ -11,7 +11,9 @@ function fetchAll() {
     method: "GET",
     headers: authHeader()
   };
-  return fetch("localhost:8080/url", options).then(userService.handleResponse);
+  return fetch("http://localhost:8080/url", options).then(
+    userService.handleResponse
+  );
 }
 
 function insert(url) {
@@ -20,6 +22,7 @@ function insert(url) {
     headers: authHeader(),
     body: JSON.stringify({ urlOriginal: url })
   };
-  return fetch("localhost:8080/url", options).then(userService.handleResponse);
+  return fetch("http://localhost:8080/url", options).then(
+    userService.handleResponse
+  );
 }
-

@@ -24,5 +24,6 @@ de configuração, se necessário.
 * **DB_USERNAME**: Nome do usuário que será utilizado pelo sistema para se conectar ao banco.
 * **DB_PASSWORD**: Senha de conexão com o banco.
 Adicionadas estas variáveis ao ambiente (fica a seu critério adicionar outras configurações do Spring) e
-resolvidas as dependências, o back-end do sistema já deve estar pronto para rodar! 
+resolvidas as dependências, o back-end do sistema já deve estar pronto para rodar! Basta rodar primeiro o serviço
+do backend via maven e depois o front via npm (o script é o padrão do Vue, `npm run serve`)
 

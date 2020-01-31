@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <b-col sm="6" offset-sm="3">
     <h2 style="text-align: center">Login</h2>
     <b-form @submit.prevent="handleSubmit">
       <b-form-group label="E-mail:" label-for="input-email">
@@ -45,7 +45,7 @@
         >
       </b-button-group>
     </b-container>
-  </div>
+  </b-col>
 </template>
 
 <script>
